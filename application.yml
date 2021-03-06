@@ -1,0 +1,59 @@
+# email
+mail:
+  domain: gmail.com
+# info logging demo
+#info:
+  #id: ${spring.application.name}
+#logging:
+  #level:
+    #org.springframework.security: DEBUG
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+        loggerLevel: basic
+spring:
+  cloud:
+    # config rabbitmq and bus refresh properties add
+    stream:
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost #config ip rabbitmq
+                port: 5672
+                username: admin
+                password: admin
+  rabbitmq:
+    host: localhost #config ip rabbitmq
+    port: 5672
+    username: admin
+    password: admin
+# Define settings for Single-Sign-On with OAuth2; this means that we need to relay the OAuth token
+# to the subsequent resources that are proxied by the Zuul api gateway.
+
+# The home definition tells us to allow anonymous access (secure: false) to the static resources that
+# are accessed through the Zuul proxy.
+
+# Remaining properties are used by the OAuth2 SSO to determine where the authorization server is and
+# what client crendentials to use to access that server.
+# Logging settings.
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level:  
+  # config application
+    org.springframework.cloud.netflix.zuul: TRACE
+    com.ston.app: DEBUG
+    org.springframework.security: DEBUG
+  # Logger-specific levels.
+  loggers:
+
+    # Redirects SQL logs to a separate file
+    org.hibernate.SQL: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG

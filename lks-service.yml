@@ -1,0 +1,40 @@
+server:
+  port: 8081
+# config bus
+spring:
+  #cloud:
+    #loadbalancer:
+      #ribbon:
+        #enabled: false
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://n1.stonsrl.com:8206/auth/realms/micro2-test-realm
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/linkser?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: mysql
+    initialization-mode: always
+  jpa:
+    database: MYSQL
+    #database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: *
+# Define the Eureka server that handles service registration
+eureka:
+  #client:
+    #serviceUrl:
+      #defaultZone: http://actuator:password@localhost:8761/eureka/
+      #defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
