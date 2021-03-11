@@ -2,15 +2,29 @@ server:
   port: 8081
 # config bus
 spring:
-  #cloud:
-    #loadbalancer:
-      #ribbon:
-        #enabled: false
+  cloud:
+    # config rabbitmq and bus refresh properties add
+    stream:
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost #config ip rabbitmq
+                port: 5672
+                username: admin
+                password: admin
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: http://n1.stonsrl.com:8206/auth/realms/micro2-test-realm
+  rabbitmq:
+    host: localhost #config ip rabbitmq
+    port: 5672
+    username: admin
+    password: admin
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/linkser?useUnicode=true&characterEncoding=utf8&useSSL=false
@@ -20,11 +34,19 @@ spring:
   jpa:
     database: MYSQL
     #database-platform: org.hibernate.dialect.MySQL8Dialect
-    properties:
-      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
-    hibernate:
-      ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate.ddl-auto: create
     show-sql: true
+lks:
+  cod-institution:
+  cod-commerce:
+  cod-terminal:
+  key-registry:
+  service:
+  key-public:
+  key-private:
+  key-link:
+  path-ps: true
 # Define the Eureka server that handles service registration
 eureka:
   #client:
