@@ -33,9 +33,9 @@ spring:
 
 # Define the Eureka server that handles service registration
 eureka:
-  #client:
-    #serviceUrl:
-      #defaultZone: http://actuator:password@localhost:8761/eureka/
+  client:
+    serviceUrl:
+      defaultZone: http://root:s3cr3t@localhost:8761/eureka/
       #defaultZone: http://localhost:8761/eureka/
   instance:
     instance-id: ${spring.application.name}-${random.uuid}
