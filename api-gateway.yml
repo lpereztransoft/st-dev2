@@ -9,10 +9,10 @@ spring:
     gateway:
       default-filters: TokenRelay
       routes:
-        id: product-service
-        uri: lb://product-service
+        id: lks-service
+        uri: lb://lks-service
         predicates:
-          Path: /api/product
+          Path: /lks
       discovery:
         locator:
           enabled: true
