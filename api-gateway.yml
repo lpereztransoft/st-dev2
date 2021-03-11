@@ -30,7 +30,11 @@ spring:
             provider: keycloak
             authorization-grant-type: authorization_code
             redirect-uri: http://localhost:8765/login/oauth2/code/micro2-cloud-gateway-client
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 # Define the Eureka server that handles service registration
 #eureka:
   #client:
