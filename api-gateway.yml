@@ -35,6 +35,9 @@ management:
     web:
       exposure:
         include: '*'
+  endpoint:
+    health:
+      show-details: always
 # Define the Eureka server that handles service registration
 #eureka:
   #client:
